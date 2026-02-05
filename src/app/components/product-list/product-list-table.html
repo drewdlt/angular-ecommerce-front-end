@@ -1,0 +1,25 @@
+<table class="table">
+
+    <thead class="table-dark">
+        <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Units In Stock</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @for (currProduct of products; track $index) {
+            <tr class="align-middle">
+                <td>
+                    <img src="{{ currProduct.imageUrl }}" height="50">
+                </td>
+                <td>{{ currProduct.name }}</td>
+                <td>{{ currProduct.unitPrice | currency:'USD' }}</td>
+                <td>{{ currProduct.unitsInStock }}</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
