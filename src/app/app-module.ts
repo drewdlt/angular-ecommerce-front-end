@@ -7,9 +7,10 @@ import { ProductList } from './components/product-list/product-list';
 import { ProductService } from './services/product';
 import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
+import { ProductCategoryMenu } from './components/product-category-menu/product-category-menu';
 
 const routes: Routes = [
-  { path: 'category/:id', component: ProductList },
+  { path: 'category/:id/:name', component: ProductList },
   { path: 'category', component: ProductList },
   { path: 'products', component: ProductList },
   { path: '', redirectTo: '/products', pathMatch: 'full' },
@@ -18,7 +19,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     App, 
-    ProductList
+    ProductList, ProductCategoryMenu
   ],
   imports: [
     RouterModule.forRoot(routes),
