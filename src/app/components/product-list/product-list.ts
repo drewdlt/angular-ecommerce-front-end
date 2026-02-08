@@ -9,22 +9,21 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './product-list-grid.html',
   styleUrl: './product-list.css',
 })
-export class ProductList implements OnInit{
-
+export class ProductList implements OnInit {
   products: Product[] = [];
   currentCategoryId: number = 1;
   currentCategoryName: string = '';
   searchMode: boolean = false;
 
-  constructor (
-    private productService: ProductService, 
-    private route: ActivatedRoute
+  constructor(
+    private productService: ProductService,
+    private route: ActivatedRoute,
   ) {}
-  
+
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
       this.listProducts();
-    })
+    });
   }
 
   listProducts() {
@@ -32,8 +31,7 @@ export class ProductList implements OnInit{
 
     if (this.searchMode) {
       this.handleSearchProducts();
-    }
-    else {
+    } else {
       this.handleListProducts();
     }
   }
@@ -41,11 +39,9 @@ export class ProductList implements OnInit{
   handleSearchProducts() {
     const theKeyWord = this.route.snapshot.paramMap.get('keyword');
 
-    this.productService.searchProducts(theKeyWord!).subscribe(
-      data => {
-        this.products = data;
-      }
-    )
+    this.productService.searchProducts(theKeyWord!).subscribe((data) => {
+      this.products = data;
+    });
   }
 
   handleListProducts() {
@@ -56,18 +52,17 @@ export class ProductList implements OnInit{
       //get the "id" param string, convert string to a number using "+"
       this.currentCategoryId = +this.route.snapshot.paramMap.get('id')!;
       this.currentCategoryName = this.route.snapshot.paramMap.get('name')!;
-    }
-    else {
+    } else {
       //not category id available ... default to category id 1
       this.currentCategoryId = 1;
       this.currentCategoryName = 'Books';
     }
 
-    // now get the products for th given category id 
-    this.productService.getProductList(this.currentCategoryId).subscribe(
-      data => {
+    // now get the products for th given category id
+    this.productService
+      .getProductList(this.currentCategoryId)
+      .subscribe((data) => {
         this.products = data;
-      }
-    )
+      });
   }
 }

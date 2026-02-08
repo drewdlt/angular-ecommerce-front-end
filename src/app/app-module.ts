@@ -9,9 +9,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductCategoryMenu } from './components/product-category-menu/product-category-menu';
 import { Search } from './components/search/search';
+import { ProductDetails } from './components/product-details/product-details';
 
 const routes: Routes = [
-  { path: 'search/:keyword', component: ProductList},
+  { path: 'products/:id', component: ProductDetails },
+  { path: 'search/:keyword', component: ProductList },
   { path: 'category/:id/:name', component: ProductList },
   { path: 'category', component: ProductList },
   { path: 'products', component: ProductList },
@@ -19,22 +21,14 @@ const routes: Routes = [
   { path: '**', redirectTo: '/products', pathMatch: 'full' },
 ];
 @NgModule({
-  declarations: [
-    App, 
-    ProductList, ProductCategoryMenu, Search
-  ],
+  declarations: [App, ProductList, ProductCategoryMenu, Search, ProductDetails],
   imports: [
     RouterModule.forRoot(routes),
-    BrowserModule, 
-    AppRoutingModule, 
-    HttpClientModule
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
   ],
-  providers: [
-    provideBrowserGlobalErrorListeners(), 
-    ProductService
-  ],
-  bootstrap: [
-    App
-  ],
+  providers: [provideBrowserGlobalErrorListeners(), ProductService],
+  bootstrap: [App],
 })
 export class AppModule {}

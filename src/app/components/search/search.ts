@@ -7,15 +7,13 @@ import { Router } from '@angular/router';
   templateUrl: './search.html',
   styleUrl: './search.css',
 })
-export class Search implements OnInit{
-
+export class Search implements OnInit {
   constructor(private router: Router) {}
 
-  ngOnInit(){
-  }
+  ngOnInit() {}
 
   doSearch(value: string) {
     console.log(`value=${value}`);
-    this.router.navigateByUrl( `/search/${value}`);
+    this.router.navigateByUrl(`/search/${value}`);
   }
 }
