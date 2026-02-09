@@ -3,6 +3,7 @@ import { ProductService } from '../../services/product';
 import { Product } from '../../common/product';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../../services/cart';
+import { CartItem } from '../../common/cart-item';
 
 @Component({
   selector: 'app-product-list',
@@ -27,8 +28,8 @@ export class ProductList implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute,
-    private cartService: CartService
+    private cartService: CartService,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -87,7 +88,7 @@ export class ProductList implements OnInit {
 
     this.previousCategoryId = this.currentCategoryId;
 
-    console.log(`currentCategoryId=${this.currentCategoryId}, pageNumber=${this.pageNumber}`);
+    // console.log(`currentCategoryId=${this.currentCategoryId}, pageNumber=${this.pageNumber}`);
 
     // now get the products for th given category id
     this.productService
@@ -114,6 +115,8 @@ export class ProductList implements OnInit {
     console.log(`Adding to cart: ${product.name}, $${product.unitPrice}`)
 
     // TODO: handle actions
+    const theCartItem = new CartItem(product);
+    this.cartService.addToCart(theCartItem);
   }
 
 }
