@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './product-list.css',
 })
 export class ProductList implements OnInit {
+
   products: Product[] = [];
   currentCategoryId: number = 1;
   previousCategoryId: number = 1;
@@ -105,6 +106,12 @@ export class ProductList implements OnInit {
     this.pageSize = +pageSize;
     this.pageNumber = 1;
     this.listProducts();
+  }
+
+  addToCart(product: Product) {
+    console.log(`Adding to cart: ${product.name}, $${product.unitPrice}`)
+
+    // TODO: handle actions
   }
 
 }
