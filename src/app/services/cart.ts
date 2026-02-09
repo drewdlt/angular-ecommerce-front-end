@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class Cart {
+export class CartService {
 
   cartItems: CartItem[] = [];
 
