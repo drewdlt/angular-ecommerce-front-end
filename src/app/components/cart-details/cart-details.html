@@ -26,7 +26,36 @@
           </td>
           <td>
             <div class="items">
-              <label>Quantity:</label> {{currItem.quantity}}
+              <label>Quantity:</label>
+
+              <div class="row no-gutters">
+                <div class="col">
+                  <button
+                    (click)="incrementQuantity(currItem)"
+                    class="btn btn-primary btn-sm"
+                  >
+                    <i class="fas fa-plus"></i>
+                  </button>
+                </div>
+
+                <div class="col ms-4 me-2">{{currItem.quantity}}</div>
+
+                <div class="col">
+                  <button
+                    (click)="decrementQuantity(currItem)"
+                    class="btn btn-primary btn-sm"
+                  >
+                    <i class="fas fa-minus"></i>
+                  </button>
+                </div>
+              </div>
+
+              <button
+                (click)="removeFromCart(currItem)"
+                class="btn btn-primary btn-sm mt-2"
+              >
+                Remove
+              </button>
             </div>
 
             <p class="mt-2">
@@ -43,7 +72,7 @@
           <td style="font-weight: bold">
             <p>Total Quantity: {{totalQuantity}}</p>
             <p>Shipping: FREE</p>
-            <p>Total Price: {{totalPrice | currency:'USD'}}</p>
+            <span>Total Price: {{totalPrice | currency:'USD'}}</span>
           </td>
         </tr>
       </table>
