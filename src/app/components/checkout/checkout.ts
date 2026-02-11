@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { last } from 'rxjs';
+import { CartService } from '../../services/cart';
 
 @Component({
   selector: 'app-checkout',
@@ -8,33 +9,37 @@ import { last } from 'rxjs';
   templateUrl: './checkout.html',
   styleUrl: './checkout.css',
 })
-export class Checkout implements OnInit{
-
+export class Checkout implements OnInit {
   checkoutFormGroup!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  totalPrice: number = 0.0;
+  totalQuantity: number = 0;
 
-  ngOnInit(): void {
-    
+  constructor(
+    private formBuilder: FormBuilder,
+    private cartService: CartService,
+  ) {}
+
+  ngOnInit() {
     this.checkoutFormGroup = this.formBuilder.group({
       customer: this.formBuilder.group({
         firstName: [''],
         lastName: [''],
-        email: ['']
+        email: [''],
       }),
       shippingAddress: this.formBuilder.group({
         country: [''],
         street: [''],
         city: [''],
         state: [''],
-        zipCode: ['']
+        zipCode: [''],
       }),
       billingAddress: this.formBuilder.group({
         country: [''],
         street: [''],
         city: [''],
         state: [''],
-        zipCode: ['']
+        zipCode: [''],
       }),
       creditCard: this.formBuilder.group({
         cardType: [''],
@@ -42,10 +47,9 @@ export class Checkout implements OnInit{
         cardNumber: [''],
         securityCode: [''],
         expirationMonth: [''],
-        expirationYear: ['']
-      })
+        expirationYear: [''],
+      }),
     });
-
   }
 
   onSubmit() {
@@ -53,18 +57,18 @@ export class Checkout implements OnInit{
 
     console.log(this.checkoutFormGroup.get('customer')!.value);
 
-    console.log(`The email address is ${this.checkoutFormGroup.get('customer')?.get('email')?.value}`);
+    console.log(
+      `The email address is ${this.checkoutFormGroup.get('customer')?.get('email')?.value}`,
+    );
   }
 
   copyShippingAddressToBillingAddress(event: any) {
-
     if (event.target.checked) {
-      this.checkoutFormGroup.controls['billingAddress']
-        .setValue(this.checkoutFormGroup.controls['shippingAddress'].value);
-    }
-    else {
+      this.checkoutFormGroup.controls['billingAddress'].setValue(
+        this.checkoutFormGroup.controls['shippingAddress'].value,
+      );
+    } else {
       this.checkoutFormGroup.controls['billingAddress'].reset();
     }
-
   }
 }

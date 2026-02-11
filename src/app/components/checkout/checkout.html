@@ -200,8 +200,8 @@
                         <div class="col-md-9">
                             <div class="input-space">
                                 <select formControlName="cardType">
-                                    <option>Debit</option>
-                                    <option>Credit</option>
+                                    <option>Visa</option>
+                                    <option>Mastercard</option>
                                 </select>
                             </div>
                         </div>
@@ -283,6 +283,15 @@
                     </div>        
 
                 </div>
+
+                <!-- review order section  -->
+                 <div class="form-area" style="font-weight: bold;">
+                    <h3>Review Your Order</h3>
+
+                    <p>Total Quantity: {{totalQuantity}}</p>
+                    <p>Shipping: FREE</p>
+                    <p>Total Price: {{totalPrice | currency:'USD'}}</p>
+                 </div>
 
                 <!-- submit button  -->
                  <div class="text-center">
