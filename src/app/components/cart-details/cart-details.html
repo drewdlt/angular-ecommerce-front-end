@@ -70,11 +70,13 @@
         <tr>
           <td colspan="2"></td>
           <td style="font-weight: bold">
-            <p>Total Quantity: {{totalQuantity}}</p>
-            <p>Shipping: FREE</p>
-            <span>Total Price: {{totalPrice | currency:'USD'}}</span>
+            <p class="py-0">Total Quantity: {{totalQuantity}}</p>
+            <p class="py-0">Shipping: FREE</p>
+            <p class="py-0">Total Price: {{totalPrice | currency:'USD'}}</p>
+            <a routerLink="/checkout" class="btn btn-primary mb-2" style="background-color: #0d6efd; color: white;">Checkout</a>
           </td>
         </tr>
+
       </table>
 
       } @else {
