@@ -26,4 +26,12 @@ export class Checkout implements OnInit{
 
   }
 
+  onSubmit() {
+    console.log('Handling the submit button');
+
+    console.log(this.checkoutFormGroup.get('customer')!.value);
+
+    console.log(`The email address is ${this.checkoutFormGroup.get('customer')?.get('email')?.value}`);
+  }
+
 }
