@@ -21,6 +21,28 @@ export class Checkout implements OnInit{
         firstName: [''],
         lastName: [''],
         email: ['']
+      }),
+      shippingAddress: this.formBuilder.group({
+        country: [''],
+        street: [''],
+        city: [''],
+        state: [''],
+        zipCode: ['']
+      }),
+      billingAddress: this.formBuilder.group({
+        country: [''],
+        street: [''],
+        city: [''],
+        state: [''],
+        zipCode: ['']
+      }),
+      creditCard: this.formBuilder.group({
+        cardType: [''],
+        nameOnCard: [''],
+        cardNumber: [''],
+        securityCode: [''],
+        expirationMonth: [''],
+        expirationYear: ['']
       })
     });
 
@@ -34,4 +56,15 @@ export class Checkout implements OnInit{
     console.log(`The email address is ${this.checkoutFormGroup.get('customer')?.get('email')?.value}`);
   }
 
+  copyShippingAddressToBillingAddress(event: any) {
+
+    if (event.target.checked) {
+      this.checkoutFormGroup.controls['billingAddress']
+        .setValue(this.checkoutFormGroup.controls['shippingAddress'].value);
+    }
+    else {
+      this.checkoutFormGroup.controls['billingAddress'].reset();
+    }
+
+  }
 }
