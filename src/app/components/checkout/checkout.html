@@ -52,10 +52,12 @@
                         </div>
                         <div class="col-md-9">
                             <div class="input-space">
-                                <select formControlName="country">
-                                    <option>United States</option>
-                                    <option>Canada</option>
-                                    <option>Mexico</option>
+                                <select formControlName="country" (change)="getStates('shippingAddress')">
+                                    @for (country of countries; track $index) {
+                                        <option [ngValue]="country">
+                                            {{country.name}}
+                                        </option>
+                                    }
                                 </select>
                             </div>
                         </div>
@@ -90,9 +92,11 @@
                         <div class="col-md-9">
                             <div class="input-space">
                                 <select formControlName="state">
-                                    <option>California</option>
-                                    <option>New York</option>
-                                    <option>Florida</option>
+                                    @for (state of shippingStates; track $index) {
+                                        <option [ngValue]="state">
+                                            {{state.name}}
+                                        </option>
+                                    }
                                 </select>
                             </div>
                         </div>
@@ -130,10 +134,12 @@
                         </div>
                         <div class="col-md-9">
                             <div class="input-space">
-                                <select formControlName="country">
-                                    <option>United States</option>
-                                    <option>Canada</option>
-                                    <option>Mexico</option>
+                                <select formControlName="country" (click)="getStates('billingAddress')">
+                                    @for (country of countries; track $index) {
+                                        <option [ngValue]="country">
+                                            {{country.name}}
+                                        </option>
+                                    }
                                 </select>
                             </div>
                         </div>
@@ -168,9 +174,11 @@
                         <div class="col-md-9">
                             <div class="input-space">
                                 <select formControlName="state">
-                                    <option>California</option>
-                                    <option>New York</option>
-                                    <option>Florida</option>
+                                    @for (state of billingStates; track $index) {
+                                        <option [ngValue]="state">
+                                            {{state.name}}
+                                        </option>
+                                    }
                                 </select>
                             </div>
                         </div>

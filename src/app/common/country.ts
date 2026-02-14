@@ -1,9 +1,9 @@
 export class Country {
     
     constructor(
-        private id: number,
-        private code: string,
-        private name: String
+        public id: number,
+        public code: string,
+        public name: String
     ) {}
     
 }
