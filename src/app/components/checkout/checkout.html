@@ -98,6 +98,14 @@
                                         </option>
                                     }
                                 </select>
+
+                                @if (shippingAddressCountry?.invalid && (shippingAddressCountry?.dirty || shippingAddressCountry?.touched)) {
+                                    <div class="alert alert-danger mt-1">
+                                        @if (shippingAddressCountry?.errors?.['required']) {
+                                            <div>Country is required</div>
+                                        }
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -109,6 +117,18 @@
                         <div class="col-md-9">
                             <div class="input-space">
                                 <input formControlName="street" type="text">
+                                
+                                @if (shippingAddressStreet?.invalid && (shippingAddressStreet?.dirty || shippingAddressStreet?.touched)) {
+                                    <div class="alert alert-danger">
+                                        @if (shippingAddressStreet?.errors?.['required'] || shippingAddressStreet?.errors?.['notOnlyWhitespace']) {
+                                            <div>Street is required</div>
+                                        }
+
+                                        @if (shippingAddressStreet?.errors?.['minlength']) {
+                                            <div>Street must be at least 2 characters long</div>
+                                        }
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -120,6 +140,18 @@
                         <div class="col-md-9">
                             <div class="input-space">
                                 <input formControlName="city" type="text">
+
+                                @if (shippingAddressCity?.invalid && (shippingAddressCity?.dirty || shippingAddressCity?.touched)) {
+                                    <div class="alert alert-danger">
+                                        @if (shippingAddressCity?.errors?.['required'] || shippingAddressCity?.errors?.['notOnlyWhitespace']) {
+                                            <div>City is required</div>
+                                        }
+
+                                        @if (shippingAddressCity?.errors?.['minlength']) {
+                                            <div>City must be at least 2 characters long</div>
+                                        }
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -137,6 +169,14 @@
                                         </option>
                                     }
                                 </select>
+
+                                 @if (shippingAddressState?.invalid && (shippingAddressState?.dirty || shippingAddressState?.touched)) {
+                                    <div class="alert alert-danger mt-1">
+                                        @if (shippingAddressState?.errors?.['required']) {
+                                            <div>State is required</div>
+                                        }
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -148,6 +188,18 @@
                         <div class="col-md-9">
                             <div class="input-space">
                                 <input formControlName="zipCode" type="text">
+
+                                @if (shippingAddressZipCode?.invalid && (shippingAddressZipCode?.dirty || shippingAddressZipCode?.touched)) {
+                                    <div class="alert alert-danger">
+                                        @if (shippingAddressZipCode?.errors?.['required'] || shippingAddressZipCode?.errors?.['notOnlyWhitespace']) {
+                                            <div>Zip Code is required</div>
+                                        }
+
+                                        @if (shippingAddressZipCode?.errors?.['minlength']) {
+                                            <div>Zip Code must be at least 2 characters long</div>
+                                        }
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
