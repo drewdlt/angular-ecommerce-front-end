@@ -232,6 +232,14 @@
                                         </option>
                                     }
                                 </select>
+
+                                 @if (billingAddressCountry?.invalid && (billingAddressCountry?.dirty || billingAddressCountry?.touched)) {
+                                    <div class="alert alert-danger mt-1">
+                                        @if (billingAddressCountry?.errors?.['required']) {
+                                            <div>Country is required</div>
+                                        }
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -243,6 +251,18 @@
                         <div class="col-md-9">
                             <div class="input-space">
                                 <input formControlName="street" type="text">
+
+                                @if (billingAddressStreet?.invalid && (billingAddressStreet?.dirty || billingAddressStreet?.touched)) {
+                                    <div class="alert alert-danger">
+                                        @if (billingAddressStreet?.errors?.['required'] || billingAddressStreet?.errors?.['notOnlyWhitespace']) {
+                                            <div>Street is required</div>
+                                        }
+
+                                        @if (billingAddressStreet?.errors?.['minlength']) {
+                                            <div>Street must be at least 2 characters long</div>
+                                        }
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -254,6 +274,18 @@
                         <div class="col-md-9">
                             <div class="input-space">
                                 <input formControlName="city" type="text">
+
+                                @if (billingAddressCity?.invalid && (billingAddressCity?.dirty || billingAddressCity?.touched)) {
+                                    <div class="alert alert-danger">
+                                        @if (billingAddressCity?.errors?.['required'] || billingAddressCity?.errors?.['notOnlyWhitespace']) {
+                                            <div>City is required</div>
+                                        }
+
+                                        @if (billingAddressCity?.errors?.['minlength']) {
+                                            <div>City must be at least 2 characters long</div>
+                                        }
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -271,6 +303,14 @@
                                         </option>
                                     }
                                 </select>
+
+                                @if (billingAddressState?.invalid && (billingAddressState?.dirty || billingAddressState?.touched)) {
+                                    <div class="alert alert-danger mt-1">
+                                        @if (billingAddressState?.errors?.['required']) {
+                                            <div>State is required</div>
+                                        }
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -282,6 +322,18 @@
                         <div class="col-md-9">
                             <div class="input-space">
                                 <input formControlName="zipCode" type="text">
+
+                                @if (billingAddressZipCode?.invalid && (billingAddressZipCode?.dirty || billingAddressZipCode?.touched)) {
+                                    <div class="alert alert-danger">
+                                        @if (billingAddressZipCode?.errors?.['required'] || billingAddressZipCode?.errors?.['notOnlyWhitespace']) {
+                                            <div>Zip Code is required</div>
+                                        }
+
+                                        @if (billingAddressZipCode?.errors?.['minlength']) {
+                                            <div>Zip Code must be at least 2 characters long</div>
+                                        }
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
