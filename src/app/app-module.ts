@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { ProductList } from './components/product-list/product-list';
 import { ProductService } from './services/product';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductCategoryMenu } from './components/product-category-menu/product-category-menu';
 import { Search } from './components/search/search';
@@ -15,6 +15,11 @@ import { CartStatus } from './components/cart-status/cart-status';
 import { CartDetails } from './components/cart-details/cart-details';
 import { Checkout } from './components/checkout/checkout';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginStatus } from './components/login-status/login-status';
+import { AuthModule } from '@auth0/auth0-angular';
+import myAppConfig from './config/my-app-config';
+import { AuthInterceptorService } from './services/auth-interceptor';
+import { MembersPage } from './components/members-page/members-page';
 
 const routes: Routes = [
   { path: 'checkout', component: Checkout },
@@ -28,16 +33,42 @@ const routes: Routes = [
   { path: '**', redirectTo: '/products', pathMatch: 'full' },
 ];
 @NgModule({
-  declarations: [App, ProductList, ProductCategoryMenu, Search, ProductDetails, CartStatus, CartDetails, Checkout],
+  declarations: [
+    App,
+    ProductList,
+    ProductCategoryMenu,
+    Search,
+    ProductDetails,
+    CartStatus,
+    CartDetails,
+    Checkout,
+    LoginStatus,
+    MembersPage,
+  ],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AuthModule.forRoot({
+      ...myAppConfig.auth,
+      httpInterceptor: {
+        ...myAppConfig.httpInterceptor,
+      },
+    }),
   ],
-  providers: [provideBrowserGlobalErrorListeners(), ProductService],
+  providers: [
+    provideBrowserGlobalErrorListeners(),
+    ProductService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptorService,
+      multi: true,
+    }
+  ],
   bootstrap: [App],
 })
+
 export class AppModule {}
